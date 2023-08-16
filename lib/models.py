@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Table
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -54,3 +54,22 @@ class Entry(Base):
 
     user = relationship("User", back_populates="entries")
     category = relationship("Category", back_populates="entries")
+    tags = relationship("Tag", secondary="entry_tags", back_populates="entries")
+
+
+class Tag(Base):
+    __tablename__ = "tags"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False, unique=True)
+
+    entries = relationship("Entry", secondary="entry_tags", back_populates="tags")
+
+
+# Many to many relationship: an entry can have many tags, and a tag can be associated with many entries
+entry_tags = Table(
+    "entry_tags",
+    Base.metadata,
+    Column("entry_id", Integer, ForeignKey("entries.id")),
+    Column("tag_id", Integer, ForeignKey("tags.id")),
+)

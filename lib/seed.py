@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import User, Category, Entry, engine
+from models import User, Category, Entry, Tag, engine
 from faker import Faker
 
 # creating a session
@@ -39,6 +39,15 @@ for _ in range(10):
 session.add_all(categories)
 session.commit()
 
+# Generate sample tags
+tags = []
+for _ in range(10):
+    tag = Tag(name=faker.word())
+    tags.append(tag)
+
+session.add_all(tags)
+session.commit()
+
 # generating 10 sample entries for a user
 entries = []
 for _ in range(10):
@@ -52,6 +61,9 @@ for _ in range(10):
         created_at=faker.date_time_this_year(),
         updated_at=faker.date_time_this_year(),
     )
+    num_tags = faker.random_int(min=1, max=3)
+    entry.tags = faker.random_elements(tags, unique=True, length=num_tags)
+
     entries.append(entry)
 
 session.add_all(entries)

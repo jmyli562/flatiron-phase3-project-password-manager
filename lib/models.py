@@ -41,7 +41,8 @@ class Category(Base):
 
 class Entry(Base):
     __tablename__ = "entries"
-    id = Column(Integer, nullable=False)
+
+    id = Column(Integer, primary_key=True)
     website = Column(String, nullable=False)
     username = Column(String)
     password = Column(String, nullable=False)

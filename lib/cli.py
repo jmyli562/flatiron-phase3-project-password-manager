@@ -7,11 +7,27 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
+def login():
+    pass
+
+
+def add_user():
+    pass
+
+
 def main():
-    options = ["entry 1", "entry 2", "entry 3"]
+    options = ["Login", "Create Account", "Exit"]
     terminal_menu = TerminalMenu(options)
-    menu_entry_index = terminal_menu.show()
-    print(f"You have selected {options[menu_entry_index]}!")
+
+    while True:
+        user_selection = terminal_menu.show()
+        if user_selection == 0:
+            login()
+        elif user_selection == 1:
+            add_user()
+        elif user_selection == 2:
+            print("Exiting program...")
+            break
 
 
 if __name__ == "__main__":

@@ -38,6 +38,9 @@ class Category(Base):
     user = relationship("User", back_populates="categories")
     entries = relationship("Entry", back_populates="category")
 
+    def __repr__(self):
+        return f"Category {self.id} " + f"{self.name}, " + f"{self.user_id} "
+
 
 class Entry(Base):
     __tablename__ = "entries"

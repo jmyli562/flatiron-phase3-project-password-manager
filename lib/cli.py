@@ -12,7 +12,13 @@ def login():
 
 
 def add_user():
-    pass
+    email = input("Please enter your email: ")
+    username = input("Please enter your username: ")
+    password = input("Please enter your password: ")
+
+    user = User(username=username, password=password, email=email)
+
+    print(f"User {username} added successfully!")
 
 
 def main():

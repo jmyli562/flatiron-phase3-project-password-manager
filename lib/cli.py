@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker, make_transient
 from models import User, Category, Entry, Tag, engine
 from simple_term_menu import TerminalMenu
+from datetime import datetime
 
 # Create the session
 Session = sessionmaker(bind=engine)
@@ -58,6 +59,7 @@ def create_entry(user):
     username = input("Please enter your username for that website: ")
     password = input("Please enter the password: ")
     note = input("Please type out a note for this website: ")
+    category = input("Please enter the category name: ")
 
 
 def user_menu(user):

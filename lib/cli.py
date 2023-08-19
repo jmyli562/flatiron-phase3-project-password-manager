@@ -52,7 +52,15 @@ def view_passwords(user):
         print(f"\nEntry {index}:")
         print(f"Website: {entry.website}")
         print(f"Username: {entry.username}")
-        print(f"Password: {entry.password}")
+
+        prompt_user = input("Reveal password for this site? (y/n): ")
+        # prompt the user asking they would like to have their password shown in plain text or encrypted
+        if (
+            prompt_user.lower() == "y"
+        ):  # if yes reveal password if no display password as asteriks
+            print(f"Password: {entry.password}")
+        else:
+            print(f"Password: " + "*" * len(entry.password))
         print(f"Category: {entry.category.name}")
         print("-" * 30)
     print()
@@ -96,12 +104,13 @@ def generate_password():
     length = int(input("Enter desired password length: "))
 
     # Prompt user for including special characters
-    include_special = input("Include special characters? (yn): ")
+    include_special = input("Include special characters? (y/n): ")
 
     ascii = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     digits = "0123456789"
     characters = ascii + digits
-    if include_special == "Y" or include_special == "y":
+    if include_special.lower() == "y":
+        print("Entered here")
         punctuation = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~."
         characters += punctuation
 
@@ -113,7 +122,8 @@ def generate_password():
 def update_password(user):
     website = input("Enter website for the password you want to update: ")
     prompt = input("Would you like to generate a secure password? [y/n]?")
-    if prompt == "Y":
+
+    if prompt.lower() == "y":
         new_password = generate_password()
     else:
         new_password = input("Please enter the new password: ")

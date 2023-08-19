@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker, make_transient
 from models import User, Category, Entry, Tag, engine
 from simple_term_menu import TerminalMenu
 from datetime import datetime
-import string
+import getpass
 import random
 
 # Create the session
@@ -12,7 +12,7 @@ session = Session()
 
 def login():
     username = input("Please enter your username: ")
-    password = input("Please enter your password: ")
+    password = getpass.getpass("Please enter your password: ")
 
     user = session.query(User).filter_by(username=username).first()
 
@@ -21,8 +21,8 @@ def login():
         print("Login successful!")
         user_menu(user)
     else:
-        print("Invalid credentials. Please try again")
-        login()
+        print("Invalid credentials. Please try logging in again.")
+        return None
 
 
 def add_user():

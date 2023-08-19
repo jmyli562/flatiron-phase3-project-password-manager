@@ -138,6 +138,43 @@ def update_password(user):
         print("Entry was not found. Password update failed.")
 
 
+def view_categories(user):
+    categories = session.query(Category).filter_by(user=user).all()
+
+    if not categories:
+        print(f"No categories were found for user {user.username}")
+    print("-" * 30)
+    print("\nCategories:")
+    print("-" * 30)
+
+    category_options = []
+    for category in categories:
+        category_options.append(category.name)
+
+    category_menu = TerminalMenu(category_options)
+    user_selection = category_menu.show()
+    # print(f"You selected {category_options[user_selection]}!")
+
+    selected_category = next(
+        (
+            category
+            for category in categories
+            if category.name == category_options[user_selection]
+        ),
+        None,
+    )
+
+    if selected_category:
+        print(f"Viewing entries in category: {selected_category.name}\n")
+        for entry in selected_category.entries:
+            print(f"Website: {entry.website}")
+            print(f"Username: {entry.username}")
+            print(f"Password: {entry.password}")
+            print("-" * 30)
+    else:
+        print("Category was not found.")
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [
@@ -159,7 +196,7 @@ def user_menu(user):
         elif user_selection == 2:
             update_password(user)
         elif user_selection == 3:
-            pass
+            view_categories(user)
         elif user_selection == 4:
             pass
         elif user_selection == 5:

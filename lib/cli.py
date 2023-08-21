@@ -184,6 +184,13 @@ def delete_entry(user):
         print("No entries found.")
         return
 
+    choices = [
+        entry.website for entry in user_entries
+    ]  # using list comprehension to return the website names
+
+    choice_menu = TerminalMenu(choices, title="Please select an entry to delete.")
+    selected_choice = choice_menu.show()  # displaying the TerminalMenu
+
 
 def user_menu(user):
     user_menu = TerminalMenu(

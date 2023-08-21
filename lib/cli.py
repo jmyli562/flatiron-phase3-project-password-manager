@@ -209,12 +209,17 @@ def delete_entry(user):
         print("Password deletion was canceled.")
 
 
+def add_tag_to_entry(user):
+    pass
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [
             "View Passwords",
             "Create New Entry",
-            "Delete Entry" "Update Password",
+            "Delete Entry",
+            "Update Password",
             "View Categories",
             "Add Tag to Entry",
             "Search Entry by Tag",
@@ -234,8 +239,10 @@ def user_menu(user):
         elif user_selection == 4:
             view_categories(user)
         elif user_selection == 5:
-            pass
+            add_tag_to_entry(user)
         elif user_selection == 6:
+            pass
+        elif user_selection == 7:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")
             break

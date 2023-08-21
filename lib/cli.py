@@ -285,6 +285,12 @@ def user_menu(user):
         elif user_selection == 6:
             pass
         elif user_selection == 7:
+            pass
+        elif user_selection == 8:
+            pass
+        elif user_selection == 9:
+            pass
+        elif user_selection == 10:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")
             break

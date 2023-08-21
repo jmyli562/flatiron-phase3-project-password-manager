@@ -189,7 +189,24 @@ def delete_entry(user):
     ]  # using list comprehension to return the website names
 
     choice_menu = TerminalMenu(choices, title="Please select an entry to delete.")
-    selected_choice = choice_menu.show()  # displaying the TerminalMenu
+    index = choice_menu.show()  # displaying the TerminalMenu
+
+    if index is None:
+        print("Password deletion was canceled.")
+        return
+
+    selected_entry = user_entries[index]  # getting the actual value using the index
+
+    print("Deleting entry for: ", selected_entry.website)
+
+    confirm_with_user = input("Are you sure you want to delete this entry? [y/n]")
+
+    if confirm_with_user.lower() == "y":
+        session.delete(selected_entry)
+        session.commit()
+        print("Entry was successfully deleted.")
+    else:
+        print("Password deletion was canceled.")
 
 
 def user_menu(user):

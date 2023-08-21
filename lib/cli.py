@@ -139,19 +139,23 @@ def update_password(user):
 
 
 def view_categories(user):
-    categories = session.query(Category).filter_by(user=user).all()
+    categories = (
+        session.query(Category).filter_by(user=user).all()
+    )  # querying the Category table to find categories that match the user
 
-    if not categories:
+    if not categories:  # no categories were found that were created by the user
         print(f"No categories were found for user {user.username}")
     print("-" * 30)
     print("\nCategories:")
     print("-" * 30)
 
-    category_options = []
+    category_options = []  # empty list that will hold options
     for category in categories:
-        category_options.append(category.name)
+        category_options.append(
+            category.name
+        )  # looping through the queries returned and appending category names to list
 
-    category_menu = TerminalMenu(category_options)
+    category_menu = TerminalMenu(category_options)  # initializing Terminal Menu
     user_selection = category_menu.show()
     # print(f"You selected {category_options[user_selection]}!")
 
@@ -159,7 +163,10 @@ def view_categories(user):
         (
             category
             for category in categories
-            if category.name == category_options[user_selection]
+            if category.name
+            == category_options[
+                user_selection
+            ]  # generator expression using next to find first category that matches
         ),
         None,
     )

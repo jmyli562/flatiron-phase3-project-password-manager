@@ -210,7 +210,35 @@ def delete_entry(user):
 
 
 def add_tag_to_entry(user):
-    pass
+    website_prompt = input("Please enter the website you want to add a tag too.")
+    tag_name = input("Please enter the tag name: ")
+
+    entry_query = (
+        session.query(Entry)
+        .filter_by(website=website_prompt, user=user)
+        .first()  # quering the Entry table to find a row where the website and user match
+    )
+
+    if entry_query:
+        tag = (
+            session.query(Tag).filter_by(name=tag_name).first()
+        )  # returning the first row in the tag table where the name matches
+
+        if not tag:  # tag was not found
+            tag = Tag(name=tag_name)  # creating a new Tag instance
+            session.add(tag)  # adding the tag to the session
+            session.commit()  # comitting the new entry to the database
+
+        if tag not in entry_query.tags:
+            entry_query.tags.append(
+                tag
+            )  # adding the tag to the entry if not already added
+            session.commit()
+            print("Tag was successfully added to the Entry")
+        else:
+            print("Entry already has this Tag added to it")
+    else:
+        print("Entry was not found.")
 
 
 def user_menu(user):

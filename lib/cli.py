@@ -124,13 +124,17 @@ def update_password(user):
     prompt = input("Would you like to generate a secure password? [y/n]?")
 
     if prompt.lower() == "y":
-        new_password = generate_password()
+        new_password = generate_password()  # calling generate password method
     else:
         new_password = input("Please enter the new password: ")
 
-    entry = session.query(Entry).filter_by(website=website, user=user).first()
-    if entry:
-        entry.password = new_password
+    entry = (
+        session.query(Entry).filter_by(website=website, user=user).first()
+    )  # retrieving the entry that needs it password updated
+    if entry:  # checking if the entry exists
+        entry.password = (
+            new_password  # setting the attribute password to the new password
+        )
         entry.updated_at = datetime.now()  # Update the updated_at timestamp
         session.commit()
         print("Password updated successfully!")

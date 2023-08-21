@@ -175,6 +175,10 @@ def view_categories(user):
         print("Category was not found.")
 
 
+def delete_entry(user):
+    pass
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [

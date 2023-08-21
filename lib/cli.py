@@ -176,7 +176,13 @@ def view_categories(user):
 
 
 def delete_entry(user):
-    pass
+    # quering the Entry table and selecting the rows where user matches the user on the table
+    user_entries = session.query(Entry).filter_by(user=user).all()
+
+    # No entry was found
+    if not user_entries:
+        print("No entries found.")
+        return
 
 
 def user_menu(user):

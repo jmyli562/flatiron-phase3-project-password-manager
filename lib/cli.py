@@ -262,6 +262,9 @@ def user_menu(user):
             "View Categories",
             "Add Tag to Entry",
             "Search Entry by Tag",
+            "Count Entries by Category",
+            "Get Average Password Length",
+            "Get Total Entries",
             "Logout",
         ]
     )

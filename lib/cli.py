@@ -180,7 +180,7 @@ def user_menu(user):
         [
             "View Passwords",
             "Create New Entry",
-            "Update Password",
+            "Delete Entry" "Update Password",
             "View Categories",
             "Add Tag to Entry",
             "Search Entry by Tag",
@@ -194,11 +194,11 @@ def user_menu(user):
         elif user_selection == 1:
             create_entry(user)
         elif user_selection == 2:
-            update_password(user)
+            delete_entry(user)
         elif user_selection == 3:
-            view_categories(user)
+            update_password(user)
         elif user_selection == 4:
-            pass
+            view_categories(user)
         elif user_selection == 5:
             pass
         elif user_selection == 6:

@@ -59,6 +59,17 @@ class Entry(Base):
     category = relationship("Category", back_populates="entries")
     tags = relationship("Tag", secondary="entry_tags", back_populates="entries")
 
+    def __repr__(self):
+        return (
+            f"Entry {self.id} "
+            + f"Website: {self.website}, "
+            + f"Username: {self.username} "
+            + f"Password: {self.password} "
+            + f"Note: {self.notes} "
+            + f"Creation date: {self.created_at} "
+            + f"Update date: {self.updated_at} "
+        )
+
 
 class Tag(Base):
     __tablename__ = "tags"

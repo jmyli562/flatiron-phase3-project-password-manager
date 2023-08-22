@@ -252,6 +252,10 @@ def add_tag_to_entry(user):
         print("Entry was not found.")
 
 
+def search_for_entry_by_tag(user):
+    pass
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [
@@ -283,7 +287,7 @@ def user_menu(user):
         elif user_selection == 5:
             add_tag_to_entry(user)
         elif user_selection == 6:
-            pass
+            search_for_entry_by_tag(user)
         elif user_selection == 7:
             pass
         elif user_selection == 8:

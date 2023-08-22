@@ -253,12 +253,30 @@ def add_tag_to_entry(user):
 
 
 def search_for_entry_by_tag(user):
-    tag_name = input("Enter the tag name to search for: ")
+    while True:  # Keep prompting the user until they enter a correct tag
+        tag_name = input("Enter the tag name to search for: ")
 
-    tag_name.strip()  # removing leading and trailing white space
+        tag_name.strip()  # removing leading and trailing white space
 
-    if len(tag_name) == 0:  # checking for empty input
-        print("Tag name cannot be empty. Please try again")
+        if len(tag_name) == 0:  # checking for empty input
+            print("Tag name cannot be empty. Please try again")
+
+        if (
+            not tag_name.isalpha()
+        ):  # checking if the input only contains alphabetical letters
+            print("Tag name should only contain letters. Please try again.")
+            continue
+        break
+
+    # fetching from the database all the entries that are associated with a specific tag for the currently logged in user
+
+    entries_with_tags = (
+        session.query(Entry)
+        .filter(Entry.user == user)
+        .join(Entry.tags)
+        .filter(Tag.name == tag_name)
+        .all()
+    )
 
 
 def user_menu(user):

@@ -253,7 +253,12 @@ def add_tag_to_entry(user):
 
 
 def search_for_entry_by_tag(user):
-    pass
+    tag_name = input("Enter the tag name to search for: ")
+
+    tag_name.strip()  # removing leading and trailing white space
+
+    if len(tag_name) == 0:  # checking for empty input
+        print("Tag name cannot be empty. Please try again")
 
 
 def user_menu(user):

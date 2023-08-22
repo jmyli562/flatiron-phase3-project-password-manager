@@ -79,6 +79,9 @@ class Tag(Base):
 
     entries = relationship("Entry", secondary="entry_tags", back_populates="tags")
 
+    def __repr__(self):
+        return f"Tag {self.id} " + f"Name: {self.name}, "
+
 
 # Many to many relationship: an entry can have many tags, and a tag can be associated with many entries
 entry_tags = Table(

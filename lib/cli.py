@@ -277,19 +277,23 @@ def search_for_entry_by_tag(user):
         .filter(Tag.name == tag_name)
         .all()
     )
-
+    # No tag was found that had a entry associated with it
     if not entries_with_tags:
         print(f"No associated entries were found with the tag '{tag_name}'")
         return
 
     print(f"These are the entries that were found with the tag '{tag_name}'")
 
+    # looping through the returned query and printing information about the entry
     for entry in entries_with_tags:
         print("- Website:", entry.website)
         print("  Username:", entry.username)
         print("  Password:", entry.password)
         print("  Notes:", entry.notes)
         print("-" * 40)
+
+    def get_count_by_entry_category(user):
+        pass
 
 
 def user_menu(user):
@@ -325,7 +329,7 @@ def user_menu(user):
         elif user_selection == 6:
             search_for_entry_by_tag(user)
         elif user_selection == 7:
-            pass
+            get_count_by_entry_category(user)
         elif user_selection == 8:
             pass
         elif user_selection == 9:

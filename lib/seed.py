@@ -42,8 +42,11 @@ session.commit()
 # Generate sample tags
 tags = []
 for _ in range(10):
-    tag = Tag(name=faker.word())
-    tags.append(tag)
+    tag_name = faker.word()
+    existing_tag = session.query(Tag).filter_by(name=tag_name).first()
+    if not existing_tag:
+        tag = Tag(name=tag_name)
+        tags.append(tag)
 
 session.add_all(tags)
 session.commit()

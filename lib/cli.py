@@ -292,8 +292,33 @@ def search_for_entry_by_tag(user):
         print("  Notes:", entry.notes)
         print("-" * 40)
 
-    def get_count_by_entry_category(user):
-        pass
+
+def get_count_by_entry_category(user):
+    categories = (
+        user.categories
+    )  # retrieving the categories associated with the user through the relationship between user and categories
+
+    if not categories:  # categories list associated with the user is empty
+        print("No categories were found for the user.")
+        return
+
+    num_entries_for_category = (
+        {}
+    )  # dict that will hold the number of entries for each category
+
+    # looping through the returned list
+    for category in categories:
+        num_entries = (
+            session.query(Entry).filter_by(user=user, category=category).count()
+        )
+        num_entries_for_category[category.name] = num_entries
+
+    print("Printing out Entry counts by Category: ")
+    for category_name, count in num_entries_for_category.items():
+        if count == 0:
+            print(f"{category_name}: No entries")
+        else:
+            print(f"{category_name}: {count} entries")
 
 
 def user_menu(user):

@@ -278,6 +278,19 @@ def search_for_entry_by_tag(user):
         .all()
     )
 
+    if not entries_with_tags:
+        print(f"No associated entries were found with the tag '{tag_name}'")
+        return
+
+    print(f"These are the entries that were found with the tag '{tag_name}'")
+
+    for entry in entries_with_tags:
+        print("- Website:", entry.website)
+        print("  Username:", entry.username)
+        print("  Password:", entry.password)
+        print("  Notes:", entry.notes)
+        print("-" * 40)
+
 
 def user_menu(user):
     user_menu = TerminalMenu(

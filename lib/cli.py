@@ -313,7 +313,19 @@ def count_entries_by_tag(user):
 
 
 def get_avg_password_length(user):
-    pass
+    user_entries = session.query(Entry).filter_by(user=user).all()
+
+    if not user_entries:
+        print(f"User {user.username} has no entries.")
+        return
+
+    password_length = 0
+    num_entries = len(user_entries)
+    for entry in user_entries:
+        password_length += len(entry.password)
+
+    average_length = password_length / num_entries
+    print(f"Average password length for {user.username}: {average_length}")
 
 
 def user_menu(user):

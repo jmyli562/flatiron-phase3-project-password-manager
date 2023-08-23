@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import User, Category, Entry, Tag, engine
+from models import User, Category, Entry, Tag, entry_tags, engine
 from faker import Faker
 import random
 
@@ -11,6 +11,8 @@ session = Session()
 session.query(Entry).delete()
 session.query(Category).delete()
 session.query(User).delete()
+session.query(Tag).delete()
+session.query(entry_tags).delete()
 session.commit()
 
 # creating a faker instance
@@ -77,9 +79,9 @@ session.commit()
 
 # generating 10 sample entries for a user
 entries = []
-categories = session.query(Category).all()
+categories = session.query(Category).all()  # retrieving all of the categories
 for _ in range(10):
-    category = random.choice(categories)
+    category = random.choice(categories)  # selecting a random category object
     entry = Entry(
         website=faker.url(),
         username=faker.user_name(),

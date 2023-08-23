@@ -293,29 +293,6 @@ def search_for_entry_by_tag(user):
         print("-" * 40)
 
 
-def get_count_by_entry_category(user):
-    categories = session.query(Category).filter_by(user=user).all()
-
-    if not categories:  # categories list associated with the user is empty
-        print("No categories were found for the user.")
-        return
-
-    num_entries_for_category = (
-        {}
-    )  # dict that will hold the number of entries for each category
-
-    # looping through the returned list
-    for category in categories:
-        num_entries = (
-            session.query(Entry).filter_by(user=user, category=category).count()
-        )
-        num_entries_for_category[category.name] = num_entries
-
-    print("Printing out Entry counts by Category: ")
-    for category_name, count in num_entries_for_category.items():
-        print(f"{category_name}: {count} entries")
-
-
 def user_menu(user):
     user_menu = TerminalMenu(
         [
@@ -349,7 +326,7 @@ def user_menu(user):
         elif user_selection == 6:
             search_for_entry_by_tag(user)
         elif user_selection == 7:
-            get_count_by_entry_category(user)
+            pass
         elif user_selection == 8:
             pass
         elif user_selection == 9:

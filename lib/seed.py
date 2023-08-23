@@ -41,12 +41,24 @@ categories = [
     "Education",
 ]
 
-for _ in range(10):
-    category_name = random.choice(categories)  # Select a random category name
-    user = random.choice(users)  # Select a random user object
+used_category_names = set()  # Keep track of used category names
 
-    category = Category(name=category_name, user=user)
+for _ in range(10):
+    # Choose a category name that hasn't been used yet
+    available_categories = [
+        category for category in categories if category not in used_category_names
+    ]
+    if not available_categories:
+        break  # No more unique categories available
+    category_name = random.choice(available_categories)
+    used_category_names.add(category_name)  # Mark category as used
+
+    # Choose a random User instance from the users list
+    user_instance = random.choice(users)
+
+    category = Category(name=category_name, user=user_instance)
     session.add(category)
+
 session.commit()
 
 # Generate sample tags
@@ -65,14 +77,16 @@ session.commit()
 
 # generating 10 sample entries for a user
 entries = []
+categories = session.query(Category).all()
 for _ in range(10):
+    category = random.choice(categories)
     entry = Entry(
         website=faker.url(),
         username=faker.user_name(),
         password=faker.password(),
         notes=faker.sentence(),
         user=faker.random_element(users),
-        category=faker.random_element(user.categories),
+        category=category,
         created_at=faker.date_time_this_year(),
         updated_at=faker.date_time_this_year(),
     )

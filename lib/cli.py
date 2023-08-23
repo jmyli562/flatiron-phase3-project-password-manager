@@ -294,6 +294,25 @@ def search_for_entry_by_tag(user):
 
 
 def count_entries_by_tag(user):
+    tag_name = input("Please enter the name of the tag that you want to count: ")
+
+    tag = session.query(Tag).filter_by(name=tag_name).first()
+
+    if not tag:  # tag was not found
+        print(f"Tag '{tag_name}' not found.")
+        return
+
+    entries_with_tag = (
+        session.query(Entry)
+        .join(Entry.tags)
+        .filter(Entry.user == user, Tag.name == tag_name)
+        .count()
+    )
+
+    print(f"Number of entries with tag '{tag_name}': {entries_with_tag}")
+
+
+def get_avg_password_length(user):
     pass
 
 
@@ -332,7 +351,7 @@ def user_menu(user):
         elif user_selection == 7:
             count_entries_by_tag(user)
         elif user_selection == 8:
-            pass
+            get_avg_password_length(user)
         elif user_selection == 9:
             pass
         elif user_selection == 10:

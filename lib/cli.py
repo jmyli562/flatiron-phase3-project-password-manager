@@ -293,6 +293,10 @@ def search_for_entry_by_tag(user):
         print("-" * 40)
 
 
+def count_entries_by_tag(user):
+    pass
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [
@@ -303,7 +307,7 @@ def user_menu(user):
             "View Categories",
             "Add Tag to Entry",
             "Search Entry by Tag",
-            "Count Entries by Category",
+            "Count Entries by Tag",
             "Get Average Password Length",
             "Get Total Entries",
             "Logout",
@@ -326,7 +330,7 @@ def user_menu(user):
         elif user_selection == 6:
             search_for_entry_by_tag(user)
         elif user_selection == 7:
-            pass
+            count_entries_by_tag(user)
         elif user_selection == 8:
             pass
         elif user_selection == 9:

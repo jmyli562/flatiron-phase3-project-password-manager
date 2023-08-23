@@ -294,9 +294,7 @@ def search_for_entry_by_tag(user):
 
 
 def get_count_by_entry_category(user):
-    categories = (
-        user.categories
-    )  # retrieving the categories associated with the user through the relationship between user and categories
+    categories = session.query(Category).filter_by(user=user).all()
 
     if not categories:  # categories list associated with the user is empty
         print("No categories were found for the user.")
@@ -315,10 +313,7 @@ def get_count_by_entry_category(user):
 
     print("Printing out Entry counts by Category: ")
     for category_name, count in num_entries_for_category.items():
-        if count == 0:
-            print(f"{category_name}: No entries")
-        else:
-            print(f"{category_name}: {count} entries")
+        print(f"{category_name}: {count} entries")
 
 
 def user_menu(user):

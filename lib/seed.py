@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import User, Category, Entry, Tag, engine
 from faker import Faker
+import random
 
 # creating a session
 Session = sessionmaker(bind=engine)
@@ -24,27 +25,38 @@ for i in range(10):
     )
     users.append(user)
 
-    users.append(user)
-
 session.add_all(users)
 session.commit()
 
 # generating 10 sample categories
-categories = []
+categories = [
+    "Social Media",
+    "Email services",
+    "Financial Accounts",
+    "Entertainment",
+    "Online shopping",
+    "Work",
+    "Health and Fitness",
+    "Travel",
+    "Education",
+]
 
 for _ in range(10):
-    category = Category(name=faker.word(), user=faker.random_element(users))
-    categories.append(category)
+    category_name = random.choice(categories)  # Select a random category name
+    user = random.choice(users)  # Select a random user object
 
-session.add_all(categories)
+    category = Category(name=category_name, user=user)
+    session.add(category)
 session.commit()
 
 # Generate sample tags
 tags = []
 for _ in range(10):
-    tag_name = faker.word()
-    existing_tag = session.query(Tag).filter_by(name=tag_name).first()
-    if not existing_tag:
+    tag_name = faker.word()  # generating a name using faker
+    existing_tag = (
+        session.query(Tag).filter_by(name=tag_name).first()
+    )  # quering the database to check if tag already exists
+    if not existing_tag:  # if it doesn't exist, add to database
         tag = Tag(name=tag_name)
         tags.append(tag)
 
@@ -60,7 +72,7 @@ for _ in range(10):
         password=faker.password(),
         notes=faker.sentence(),
         user=faker.random_element(users),
-        category=faker.random_element(categories),
+        category=faker.random_element(user.categories),
         created_at=faker.date_time_this_year(),
         updated_at=faker.date_time_this_year(),
     )

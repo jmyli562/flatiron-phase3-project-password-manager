@@ -272,10 +272,14 @@ def search_for_entry_by_tag(user):
 
     entries_with_tags = (
         session.query(Entry)
-        .filter(Entry.user == user)
-        .join(Entry.tags)
-        .filter(Tag.name == tag_name)
-        .all()
+        .filter(Entry.user == user)  # filtering the entries by user
+        .join(
+            Entry.tags
+        )  # Joining the Entry table with the entry_tags table to access tags
+        .filter(
+            Tag.name == tag_name
+        )  # filtering the entries to look for the entered tag
+        .all()  # getting all the matched entries
     )
     # No tag was found that had a entry associated with it
     if not entries_with_tags:
@@ -304,9 +308,10 @@ def count_entries_by_tag(user):
 
     entries_with_tag = (
         session.query(Entry)
-        .join(Entry.tags)
-        .filter(Entry.user == user, Tag.name == tag_name)
-        .count()
+        .filter(Entry.user == user)  # Filter entries by user
+        .join(Entry.tags)  # Join with the entry_tags table to access tags
+        .filter(Tag.name == tag_name)  # Filter entries by the given tag name
+        .count()  # Count the number of matching entries
     )
 
     print(f"Number of entries with tag '{tag_name}': {entries_with_tag}")

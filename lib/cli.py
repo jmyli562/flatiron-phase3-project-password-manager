@@ -333,7 +333,10 @@ def get_avg_password_length(user):
 
 
 def get_total_num_entries(user):
-    pass
+    total_entries = (
+        session.query(Entry).filter_by(user=user).count()
+    )  # using count aggregate method to count the number of entries for a user
+    print(f"Total number of entries for {user.username}: {total_entries}")
 
 
 def user_menu(user):

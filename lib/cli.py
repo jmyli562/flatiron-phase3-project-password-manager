@@ -332,6 +332,10 @@ def get_avg_password_length(user):
     print(f"Average password length for {user.username}: {average_length}")
 
 
+def get_total_num_entries(user):
+    pass
+
+
 def user_menu(user):
     user_menu = TerminalMenu(
         [
@@ -369,7 +373,7 @@ def user_menu(user):
         elif user_selection == 8:
             get_avg_password_length(user)
         elif user_selection == 9:
-            pass
+            get_total_num_entries(user)
         elif user_selection == 10:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")

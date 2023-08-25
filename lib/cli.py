@@ -412,6 +412,26 @@ def entry_submenu(user):
             user_menu(user)
 
 
+def category_submenu(user):
+    category_menu = TerminalMenu(
+        [
+            "View Categories",
+            "Create Category",
+            "Back",
+        ]
+    )
+    while True:
+        user_selection = category_menu.show()
+        if user_selection == 0:
+            view_categories(user)
+        elif user_selection == 1:
+            delete_entry(user)
+        elif user_selection == 2:
+            get_total_num_entries(user)
+        elif user_selection == 3:
+            user_menu(user)
+
+
 def main():
     options = ["Login", "Create Account", "Exit"]
     terminal_menu = TerminalMenu(options)

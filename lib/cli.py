@@ -186,6 +186,29 @@ def view_categories(user):
         print("Category was not found.")
 
 
+def create_category(user):
+    category = input("Please enter the name of the new category: ")
+
+    while True:
+        if not category.isalpha():
+            print("Category name should only contain letters. Please try again.")
+            continue
+        break
+
+    existing_category = (
+        session.query(Category).filter_by(name=category, user=user).first()
+    )
+    if existing_category:
+        print(f"A category with the name '{category}' already exists for this user.")
+        return
+
+    new_category = Category(name=category, user=user)
+    session.add(new_category)
+    session.commit()
+
+    print(f"Category '{category}' has been created successfully.")
+
+
 def delete_entry(user):
     # quering the Entry table and selecting the rows where user matches the user on the table
     user_entries = session.query(Entry).filter_by(user=user).all()

@@ -390,8 +390,26 @@ def password_submenu(user):
         elif user_selection == 3:
             user_menu(user)
 
+
 def entry_submenu(user):
-    
+    entry_menu = TerminalMenu(
+        [
+            "Create new Entry",
+            "Delete Entry",
+            "Get total Entries",
+            "Back",
+        ]
+    )
+    while True:
+        user_selection = entry_menu.show()
+        if user_selection == 0:
+            create_entry(user)
+        elif user_selection == 1:
+            delete_entry(user)
+        elif user_selection == 2:
+            get_total_num_entries(user)
+        elif user_selection == 3:
+            user_menu(user)
 
 
 def main():

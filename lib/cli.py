@@ -425,6 +425,25 @@ def category_submenu(user):
         if user_selection == 0:
             view_categories(user)
         elif user_selection == 1:
+            create_category(user)
+        elif user_selection == 2:
+            user_menu(user)
+
+
+def tag_submenu(user):
+    tag_menu = TerminalMenu(
+        [
+            "Add Tag to Entry",
+            "Search Entry by Tag",
+            "Count Entries by Tag",
+            "Back",
+        ]
+    )
+    while True:
+        user_selection = tag_menu.show()
+        if user_selection == 0:
+            view_categories(user)
+        elif user_selection == 1:
             delete_entry(user)
         elif user_selection == 2:
             get_total_num_entries(user)

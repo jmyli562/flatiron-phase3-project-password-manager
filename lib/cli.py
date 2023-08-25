@@ -347,45 +347,51 @@ def get_total_num_entries(user):
 def user_menu(user):
     user_menu = TerminalMenu(
         [
-            "View Passwords",
-            "Create New Entry",
-            "Delete Entry",
-            "Update Password",
-            "View Categories",
-            "Add Tag to Entry",
-            "Search Entry by Tag",
-            "Count Entries by Tag",
-            "Get Average Password Length",
-            "Get Total Entries",
+            "Manage Passwords",
+            "Manage Entries",
+            "Manage Categories",
+            "Manage Tags",
             "Logout",
         ]
     )
     while True:
         user_selection = user_menu.show()
         if user_selection == 0:
-            view_passwords(user)
+            password_submenu(user)
         elif user_selection == 1:
-            create_entry(user)
+            entry_submenu(user)
         elif user_selection == 2:
-            delete_entry(user)
+            category_submenu(user)
         elif user_selection == 3:
-            update_password(user)
+            tag_submenu(user)
         elif user_selection == 4:
-            view_categories(user)
-        elif user_selection == 5:
-            add_tag_to_entry(user)
-        elif user_selection == 6:
-            search_for_entry_by_tag(user)
-        elif user_selection == 7:
-            count_entries_by_tag(user)
-        elif user_selection == 8:
-            get_avg_password_length(user)
-        elif user_selection == 9:
-            get_total_num_entries(user)
-        elif user_selection == 10:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")
             break
+
+
+def password_submenu(user):
+    password_menu = TerminalMenu(
+        [
+            "View Passwords",
+            "Update Password",
+            "Get Average Password Length",
+            "Back",
+        ]
+    )
+    while True:
+        user_selection = password_menu.show()
+        if user_selection == 0:
+            view_passwords(user)
+        elif user_selection == 1:
+            update_password(user)
+        elif user_selection == 2:
+            get_avg_password_length(user)
+        elif user_selection == 3:
+            user_menu(user)
+
+def entry_submenu(user):
+    
 
 
 def main():

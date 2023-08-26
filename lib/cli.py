@@ -384,21 +384,25 @@ def user_menu(user):
     while True:
         user_selection = user_menu.show()
         if user_selection == 0:
+            # if the submenu returns None, continue the loop
             if password_submenu(user) is None:
                 continue
         elif user_selection == 1:
+            # if the submenu returns None, continue the loop
             if entry_submenu(user) is None:
                 continue
         elif user_selection == 2:
+            # if the submenu returns None, continue the loop
             if category_submenu(user) is None:
                 continue
         elif user_selection == 3:
+            # if the submenu returns None, continue the loop
             if tag_submenu(user) is None:
                 continue
         elif user_selection == 4:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")
-            return
+            return  # exit the method and return to main
 
 
 def password_submenu(user):
@@ -473,11 +477,11 @@ def tag_submenu(user):
     while True:
         user_selection = tag_menu.show()
         if user_selection == 0:
-            view_categories(user)
+            add_tag_to_entry(user)
         elif user_selection == 1:
-            delete_entry(user)
+            search_for_entry_by_tag(user)
         elif user_selection == 2:
-            get_total_num_entries(user)
+            count_entries_by_tag(user)
         elif user_selection == 3:
             return
 

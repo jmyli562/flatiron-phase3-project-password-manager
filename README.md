@@ -76,7 +76,7 @@ In this menu, you can add and remove tags to/from entries, as well as search and
 ## Logging Out
 To log out, simply choose the "Log Out" option from the main menu.
 You'll be taken back to the registration/login screen.
-## Demo Video
+## Demo
 [![Watch the video](https://img.youtube.com/vi/O8YjhyESclM/hqdefault.jpg)](https://www.youtube.com/embed/O8YjhyESclM)
 
 ## Contributing

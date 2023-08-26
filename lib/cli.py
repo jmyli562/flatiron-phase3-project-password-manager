@@ -1,4 +1,4 @@
-from sqlalchemy.orm import sessionmaker, make_transient
+from sqlalchemy.orm import sessionmaker
 from models import User, Category, Entry, Tag, engine
 from simple_term_menu import TerminalMenu
 from datetime import datetime
@@ -17,7 +17,7 @@ def login():
     user = session.query(User).filter_by(username=username).first()
 
     if user and user.password == password:
-        make_transient(user)
+        # make_transient(user)
         print("Login successful!")
         user_menu(user)
     else:
@@ -74,7 +74,11 @@ def create_entry(user):
     name = input("Please enter the category name: ")
 
     # Checking if the category already exists for the logged in user
-    category = session.query(Category).filter_by(name=name, user=user)
+    category = (
+        session.query(Category)
+        .filter(Category.name == name, Category.user == user)
+        .first()
+    )
     # If is does not exist create a new category entry in database
     if not category:
         print("Category not found. Creating new category...")

@@ -384,17 +384,21 @@ def user_menu(user):
     while True:
         user_selection = user_menu.show()
         if user_selection == 0:
-            password_submenu(user)
+            if password_submenu(user) is None:
+                continue
         elif user_selection == 1:
-            entry_submenu(user)
+            if entry_submenu(user) is None:
+                continue
         elif user_selection == 2:
-            category_submenu(user)
+            if category_submenu(user) is None:
+                continue
         elif user_selection == 3:
-            tag_submenu(user)
+            if tag_submenu(user) is None:
+                continue
         elif user_selection == 4:
             print("Logging out...")
             print(f"User {user.username} has been successfully logged out.")
-            break
+            return
 
 
 def password_submenu(user):
@@ -415,7 +419,7 @@ def password_submenu(user):
         elif user_selection == 2:
             get_avg_password_length(user)
         elif user_selection == 3:
-            user_menu(user)
+            return
 
 
 def entry_submenu(user):
@@ -436,7 +440,7 @@ def entry_submenu(user):
         elif user_selection == 2:
             get_total_num_entries(user)
         elif user_selection == 3:
-            user_menu(user)
+            return
 
 
 def category_submenu(user):
@@ -454,7 +458,7 @@ def category_submenu(user):
         elif user_selection == 1:
             create_category(user)
         elif user_selection == 2:
-            user_menu(user)
+            return
 
 
 def tag_submenu(user):
@@ -475,7 +479,7 @@ def tag_submenu(user):
         elif user_selection == 2:
             get_total_num_entries(user)
         elif user_selection == 3:
-            user_menu(user)
+            return
 
 
 def main():
@@ -490,7 +494,7 @@ def main():
             add_user()
         elif user_selection == 2:
             print("Exiting program...")
-            break
+            return
 
 
 if __name__ == "__main__":

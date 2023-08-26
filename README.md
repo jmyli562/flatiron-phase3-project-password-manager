@@ -9,7 +9,6 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Demo Video](#demo)
-- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -51,8 +50,35 @@ The Password Management Application is a secure and user-friendly tool built usi
    python cli.py
 
 ## Usage
+### Registration and Login
+Upon running the application, you'll be prompted to register or log in.
+To register, provide a unique username, a strong password, and a valid email address.
+To log in, enter your username and password.
+### Main Menu
+After logging in, you'll be presented with the main menu. The main menu options include:
 
+### Manage Passwords
+Picking this option will take you to a submenu where you can manage your passwords.
+Options include viewing your password, updating your password, and viewing your average password length.
+
+### Manage Entries
+Picking this option will take you to a submenu where you can view and manage your account entries.
+Options include adding new entries, deleting an entry, and viewing all of your entries.
+
+### Manage Categories
+Organize your entries by creating, viewing, and deleting your categories.
+Options include viewing your categories, creating new categories and delete existing ones.
+
+### Manage tags
+This option will enable you to categorize your entries further using tags.
+In this menu, you can add and remove tags to/from entries, as well as search and count entries by tag for better organization.
+
+## Logging Out
+To log out, simply choose the "Log Out" option from the main menu.
+You'll be taken back to the registration/login screen.
 ## Demo Video
+[![Watch the video](https://img.youtube.com/vi/O8YjhyESclM/hqdefault.jpg)](https://www.youtube.com/embed/O8YjhyESclM)
+
 ## Contributing
 
 Pull requests are welcome. If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".

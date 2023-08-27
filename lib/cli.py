@@ -17,7 +17,6 @@ def login():
     user = session.query(User).filter_by(username=username).first()
 
     if user and user.password == password:
-        # make_transient(user)
         print("Login successful!")
         user_menu(user)
     else:
@@ -166,15 +165,12 @@ def view_categories(user):
     category_menu = TerminalMenu(category_options)  # initializing Terminal Menu
     user_selection = category_menu.show()
     # print(f"You selected {category_options[user_selection]}!")
-
+    # generator expression using next to find first category that matches
     selected_category = next(
         (
             category
             for category in categories
-            if category.name
-            == category_options[
-                user_selection
-            ]  # generator expression using next to find first category that matches
+            if category.name == category_options[user_selection]
         ),
         None,
     )

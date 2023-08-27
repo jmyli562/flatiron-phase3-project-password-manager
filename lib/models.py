@@ -15,8 +15,10 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     email = Column(String, nullable=False)
-
+    # defining user relationship with category
+    # a category is created by a user and a user can have many categories
     categories = relationship("Category", back_populates="user")
+    # a entry belongs to a user and a user can have many entries
     entries = relationship("Entry", back_populates="user")
 
     def __repr__(self):
@@ -36,6 +38,7 @@ class Category(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
 
     user = relationship("User", back_populates="categories")
+    # a entry can have only one category, but a category can have many entries
     entries = relationship("Entry", back_populates="category")
 
     def __repr__(self):
@@ -76,7 +79,7 @@ class Tag(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
-
+    # A tag can belong to many entries, and a entry can have many tags (Many to many)
     entries = relationship("Entry", secondary="entry_tags", back_populates="tags")
 
 

@@ -27,6 +27,22 @@ The Password Management Application is a secure and user-friendly tool built usi
 
 ## Installation
 
+### Pre-requisites
+To successfully install my application please follow the instructions below. Note that there are a couple of pre-requisites that are required to be installed which are Python, pyenv, and pipenv.
+
+
+1. To install pyenv, you can use the pyenv installer found here: https://github.com/pyenv/pyenv-installer
+
+2. Once pyenv is installed, please install python version 3.8.13 using the following command:
+   ```bash
+   pyenv install 3.8.13
+
+3. Finally, install pipenv using the following command:
+   ```bash
+   pip install pipenv
+
+After installing everything above, please follow the instructions below to install my application.
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/password-management-app.git
@@ -39,15 +55,27 @@ The Password Management Application is a secure and user-friendly tool built usi
    ```bash
    pipenv install
    
-4. cd into the lib directory
+4. Enter into the virtual environment
+   ```bash
+   pipenv shell
+5. cd into lib directory
    ```bash
    cd lib
-5. Seed the database
+6. Initialize alembic
+   ```bash
+   alembic init alembic
+7. Create Initial Migration
+   ```bash
+   alembic revision --autogenerate -m "Initial migration"
+8. Apply migration
+   ```bash
+   alembic upgrade head
+9. Seed the database
    ```bash
    python seed.py
-6. Run the application
-   ```bash
-   python cli.py
+10. Run the application
+    ```bash
+    python cli.py
 
 ## Usage
 ### Registration and Login

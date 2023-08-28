@@ -94,21 +94,32 @@ After logging in, you'll be presented with the main menu. The main menu options 
 Picking this option will take you to a submenu where you can manage your passwords.
 Options include viewing your password, updating your password, and viewing your average password length.
 
+![Screenshot 2023-08-27 181059](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/655038c7-db63-4d7b-8d5d-9b692acc16ad)
+
 ### Manage Entries
 Picking this option will take you to a submenu where you can view and manage your account entries.
 Options include adding new entries, deleting an entry, and viewing all of your entries.
 
+![Screenshot 2023-08-27 181344](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/bf0587c6-3652-4b36-b73b-877d164c4d93)
+
 ### Manage Categories
 Organize your entries by creating, viewing, and deleting your categories.
-Options include viewing your categories, creating new categories and delete existing ones.
+Options include viewing your categories and creating new categories
+
+![Screenshot 2023-08-27 181454](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/5196fbb7-847b-4772-a6e0-c9af6d9be504)
 
 ### Manage tags
 This option will enable you to categorize your entries further using tags.
 In this menu, you can add and remove tags to/from entries, as well as search and count entries by tag for better organization.
 
+![Screenshot 2023-08-27 181933](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/99681f0b-1af4-4beb-9307-7ec7390f819a)
+
 ## Logging Out
 To log out, simply choose the "Log Out" option from the main menu.
 You'll be taken back to the registration/login screen.
+
+![Screenshot 2023-08-27 182037](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/4688e5a2-2c7c-48be-bfae-edb9c154bd42)
+
 ## Demo
 [![Watch the video](https://img.youtube.com/vi/O8YjhyESclM/hqdefault.jpg)](https://www.youtube.com/embed/O8YjhyESclM)
 

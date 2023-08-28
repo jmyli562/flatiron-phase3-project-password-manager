@@ -82,8 +82,13 @@ After installing everything above, please follow the instructions below to insta
 Upon running the application, you'll be prompted to register or log in.
 To register, provide a unique username, a strong password, and a valid email address.
 To log in, enter your username and password.
+
+![Registration Page](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/0be1a213-7d5d-4491-a6b5-cbddc356ed3b)
+
 ### Main Menu
 After logging in, you'll be presented with the main menu. The main menu options include:
+
+![Screenshot 2023-08-27 180524](https://github.com/jmyli562/flatiron-phase3-project-password-manager/assets/60550632/75b04beb-e9b9-4409-8cfa-35da7324eccb)
 
 ### Manage Passwords
 Picking this option will take you to a submenu where you can manage your passwords.

@@ -11,11 +11,13 @@ session = Session()
 
 
 def login():
+    # prompting the user
     username = input("Please enter your username: ")
     password = getpass.getpass("Please enter your password: ")
 
     user = session.query(User).filter_by(username=username).first()
 
+    # checking if the user exists and if the password matches that in the database
     if user and user.password == password:
         print("Login successful!")
         user_menu(user)
@@ -25,11 +27,14 @@ def login():
 
 
 def add_user():
+    # prompting the user
     email = input("Please enter your email: ")
     username = input("Please enter your username: ")
     password = input("Please enter your password: ")
 
+    # creating new user instance
     user = User(username=username, password=password, email=email)
+    # adding and commiting the new user to the database
     session.add(user)
     session.commit()
 
@@ -47,6 +52,7 @@ def view_passwords(user):
 
     print("\nSaved Passwords:")
     print("-" * 30)
+    # special for loop starting at index 1 that will loop through the user entries that was grabbed previously
     for index, entry in enumerate(user_entry, start=1):
         print(f"\nEntry {index}:")
         print(f"Website: {entry.website}")
@@ -66,6 +72,7 @@ def view_passwords(user):
 
 
 def create_entry(user):
+    # prompting the user
     website = input("Please enter the website url: ")
     username = input("Please enter your username for that website: ")
     password = input("Please enter the password: ")
@@ -87,6 +94,7 @@ def create_entry(user):
 
     current_time = datetime.now()  # Get the current timestamp
 
+    # creating new Entry instance
     new_entry = Entry(
         website=website,
         username=username,
@@ -117,12 +125,13 @@ def generate_password():
         punctuation = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~."
         characters += punctuation
 
-    # Generate and return password using random choice
+    # Generate and return password using random choice.
     password = "".join(random.choice(characters) for i in range(length))
     return password
 
 
 def update_password(user):
+    # prompt the user
     website = input("Enter website for the password you want to update: ")
     prompt = input("Would you like to generate a secure password? [y/n]?")
 
@@ -190,11 +199,11 @@ def create_category(user):
     category = input("Please enter the name of the new category: ")
 
     while True:
-        if not category.isalpha():
+        if not category.isalpha():  # making sure the category only contains letters
             print("Category name should only contain letters. Please try again.")
             continue
         break
-
+    # grabbing the first category instance that matches the user and the category that the user input
     existing_category = (
         session.query(Category).filter_by(name=category, user=user).first()
     )
